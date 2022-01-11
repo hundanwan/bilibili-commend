@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer" />
+    <title>哔哩哔哩每日推荐视频</title>
+    <script type="text/javascript" src="/static/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/index.css" />
+</head>
+
+<body>
+    <header class="header">
+        <button class="mobile-nav-open" onclick="mobileOpen()">
+            <i class="icon icon-burger">
+
+            </i>
+        </button>
+        <div class="header-inner">
+            <div class="header-logo-title-wrapper" id="header-logo-title-wrapper">
+
+                    <img src="/static/img/cover.png">
+
+
+            </div>
+
+
+        </div>
+        <div class="search-form-wrapper">
+            <div class="search-form">
+                <div class="search-input-wrapper">
+                    <input type="search" placeholder="Search">
+
+                    <button class="search-form-btn"></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <ul class="header-nav">
+            <li><a href="#">直播</a></li>
+            <li><a href="#">电视剧</a></li>
+            <li><a href="#">纪录片</a></li>
+            <li><a href="#">音乐</a></li>
+            <li><a href="#">知识</a></li>
+            <li><a href="#">虚拟UP主</a></li>
+            <li><a href="#">VLOG</a></li>
+            <li><a href="#">活动中心</a></li>
+        </ul>
+    </nav>
+    <nav class="nav-mobile" id="nav-mobile">
+        <div class="close-box">
+            <button class="close-btn" onclick="mobileClose()">
+                <i class="icon icon-close"></i>
+            </button>
+        </div>
+
+
+        <div class="header-logo-title-wrapper" id="header-logo-title-wrapper">
+            <img src="/static/img/cover.png">
+        </div>
+
+        <div class="search-form-wrapper-mobile">
+            <div class="search-form-mobile">
+
+                <input type="search" placeholder="Search">
+
+                <button class="search-form-btn-mobile"></button>
+
+            </div>
+        </div>
+        <ul class="header-nav-mobile">
+            <li><a href="#">直播</a></li>
+            <li><a href="#">电视剧</a></li>
+            <li><a href="#">纪录片</a></li>
+            <li><a href="#">音乐</a></li>
+            <li><a href="#">知识</a></li>
+            <li><a href="#">虚拟UP主</a></li>
+            <li><a href="#">VLOG</a></li>
+            <li><a href="#">活动中心</a></li>
+        </ul>
+
+        <hr>
+        <ul class="header-nav-mobile">
+            <li><a href="#">直播</a></li>
+            <li><a href="#">电视剧</a></li>
+            <li><a href="#">纪录片</a></li>
+            <li><a href="#">音乐</a></li>
+            <li><a href="#">知识</a></li>
+            <li><a href="#">虚拟UP主</a></li>
+            <li><a href="#">VLOG</a></li>
+            <li><a href="#">活动中心</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="swapper">
+
+            <i id="b-left" class="b-left" onclick="move(-1)">&lt;</i>
+            <i id="b-right" class="b-right" onclick="move(1)">&gt;</i>
+            <div class="swap-box">
+                <ul id="container">
+                    {{ range $i,$value := .Rankings}}
+                        {{ if eq $i 1}}
+                            {{ range $i,$v := $value.Ranking}}
+                            {{ if lt $i 3}}
+                            <li><a href="{{.Bvid}}"><img src="{{.Pic}}" alt=""></a>
+                                <!-- <span class="title-text">Friends Quiz:Can You<br>Remember
+                                            These Obscure<br>Details From Friends?
+                                        </span> -->
+                                </img>
+
+                            </li>
+                            {{ end }}
+                                {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    {{ range $i,$value := .Rankings }}
+                        {{ if eq $i 1}}
+                            {{ range $i,$v := $value.Ranking}}
+                            {{ if eq $i 0}}
+                            <li><a href="{{$v.Bvid}}"><img src="{{$v.Pic}}" alt=""></a></li>
+                            {{end}}
+                                {{ end }}
+                        {{ end }}
+                    {{ end }}
+
+                </ul>
+            </div>
+
+        </div>
+        <article class="section-card">
+            <h1>推荐视频</h1>
+            <div class="cards-box-popular">
+                {{ range $k,$v := .Commends }}
+                {{ if lt $k 3}}
+                <div class="cards-popular">
+                    <h2>{{.Title}}</h2><a href="{{.Bvid}}"><img src="{{.Pic}}" alt="{{.Title}}"></a>
+                </div>
+                {{ end }}
+
+
+                {{ end }}
+            </div>
+        </article>
+        <div class="subscribe-box">
+            <div class="subscribe-container">
+                <div class="subscribe-info">
+                    <div class="header-logo-title-wrapper" id="subscribe-header-logo-title-wrapper">
+                        <img src="/static/img/cover.png">
+                    </div>
+                    <h1>我们会每周将bilibili热门梗的问答卷发送到你的邮箱!</h1>
+                </div>
+                <div class="subscribe">
+                    <input type="e-mail" placeholder="Enter Email Address">
+                    <button>SIGN UP</button>
+                </div>
+            </div>
+            <p>
+                Playing quizzes is free! We send meme questions and  tests every week to your inbox. By
+                clicking "Sign Up" you are agreeing to our privacy policy and confirming that you are 13 years old
+                or over.
+            </p>
+        </div>
+{{/*        <article class="section-card">*/}}
+{{/*            <h1>番剧更新</h1>*/}}
+
+{{/*            <div class="grid">*/}}
+{{/*                {{ range $i ,$v := .Anime }}*/}}
+{{/*                    {{ if lt $i 8 }}*/}}
+{{/*                <div class="cards-contain">*/}}
+{{/*                    <div class="cards-box">*/}}
+{{/*                        <div class="cards">*/}}
+{{/*                            <img src="{{ $v.Pic }}" alt="">*/}}
+{{/*                        </div>*/}}
+{{/*                    </div>*/}}
+{{/*                    <div class="text">*/}}
+{{/*                        <h2>{{ $v.Title}}</h2>*/}}
+{{/*                    </div>*/}}
+{{/*                </div>*/}}
+{{/*                    {{ end }}*/}}
+{{/*                {{ end }}*/}}
+{{/*            </div>*/}}
+
+
+{{/*        </article>*/}}
+{{/*        <article class="section-card">*/}}
+{{/*            <h1>音 乐</h1>*/}}
+{{/*            <div class="grid">*/}}
+{{/*                {{ range $i,$v := .Music}}*/}}
+{{/*                {{ if lt $i 8}}*/}}
+{{/*                <div class="cards-contain">*/}}
+{{/*                    <div class="cards-box">*/}}
+{{/*                        <div class="cards">*/}}
+{{/*                            <img src="{{ $v.Pic }}" alt="">*/}}
+{{/*                        </div>*/}}
+{{/*                    </div>*/}}
+{{/*                    <div class="text">*/}}
+{{/*                        <h2>{{ $v.Title }}</h2>*/}}
+{{/*                    </div>*/}}
+{{/*                </div>*/}}
+{{/*                {{ end }}*/}}
+{{/*                {{ end }}*/}}
+
+
+{{/*            </div>*/}}
+
+
+{{/*        </article>*/}}
+
+        {{ range $i,$value := .Rankings}}
+        <article class="section-card">
+            <h1>{{$value.Type}}</h1>
+            <div class="grid">
+                {{ range $i,$v := $value.Ranking}}
+                    {{ if lt $i 8}}
+
+                        <div class="cards-contain">
+                            <a href="{{ $v.Bvid }}">
+                            <div class="cards-box">
+                                <div class="cards">
+                                    <img src="{{ $v.Pic }}" alt="">
+                                </div>
+                            </div>
+                            <div class="text">
+                                <h2>{{ $v.Title }}</h2>
+                            </div>
+                        </a>
+                        </div>
+
+                    {{ end }}
+                {{ end }}
+
+
+            </div>
+
+
+        </article>
+        {{ end }}
+    </div>
+
+    <div class="footer">
+        <div class="header-logo-title-wrapper" id="foot-header-logo-title-wrapper">
+            <img src="/static/img/cover.png">
+        </div>
+        <div>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Terms</a></li>
+            </ul>
+        </div>
+        <p>Copyright © 2021 InfoSpace Holdings, LLC, a System1 Company</p>
+    </div>
+</body>
+
+</html>
